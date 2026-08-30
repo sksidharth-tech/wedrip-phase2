@@ -52,7 +52,7 @@ export default function Header({ bagCount }: { bagCount: number }) {
 
       {/* Desktop nav - Swiss style */}
       <nav className="hidden md:flex gap-8">
-        {["OBJECTS", "STORY", "DROPS", "CONTACT"].map((label) => (
+        {["STORE", "STORY", "DROPS", "CONTACT"].map((label) => (
           <a
             key={label}
             href={label === "CONTACT" ? "mailto:hello@wedrip.in" : `#${label.toLowerCase()}`}
@@ -75,7 +75,7 @@ export default function Header({ bagCount }: { bagCount: number }) {
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        {["OBJECTS", "STORY", "DROPS", "CONTACT"].map((label, i) => (
+        {["STORE", "STORY", "DROPS", "CONTACT"].map((label, i) => (
           <a
             key={label}
             href={label === "CONTACT" ? "mailto:hello@wedrip.in" : `#${label.toLowerCase()}`}

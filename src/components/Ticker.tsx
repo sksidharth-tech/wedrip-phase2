@@ -2,7 +2,7 @@
 
 const items = [
   "WEAR THE SCENE",
-  "CREATOR-LED OBJECTS",
+  "CREATOR-LED STORE",
   "MADE IN INDIA",
   "NO BLANKS",
   "NO LOGO SLAPS",
