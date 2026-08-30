@@ -19,7 +19,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-5 md:px-10 overflow-hidden editorial-stripe" id="top">
+    <section className="relative min-h-screen flex items-center justify-center pl-7 pr-5 md:pl-20 md:pr-10 overflow-hidden editorial-stripe" id="top">
       {/* Background - Warm editorial cream */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#f5f0e8] via-[#ebe5d8] to-[#f5f0e8]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,rgba(234,179,8,0.04)_0%,transparent_60%)]" />

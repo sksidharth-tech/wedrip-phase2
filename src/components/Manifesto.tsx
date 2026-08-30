@@ -8,7 +8,7 @@ export default function Manifesto() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-24 md:py-40 px-5 md:px-10 bg-[var(--color-bg-warm)]" id="story" ref={ref}>
+    <section className="relative py-24 md:py-40 pl-7 pr-5 md:pl-20 md:pr-10 bg-[var(--color-bg-warm)]" id="story" ref={ref}>
       {/* Swiss divider top */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-[var(--color-text)]" />
 

@@ -119,7 +119,7 @@ export default function Products({
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 md:py-32 px-5 md:px-10" id="store" ref={ref}>
+    <section className="py-20 md:py-32 pl-7 pr-5 md:pl-20 md:pr-10" id="store" ref={ref}>
       <div className="max-w-7xl mx-auto">
         {/* Header - Swiss style */}
         <div className="flex justify-between items-baseline mb-8 pb-4 border-b-[3px] border-[var(--color-text)] relative">

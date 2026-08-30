@@ -8,7 +8,7 @@ export default function Footer() {
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <footer className="py-16 md:py-24 px-5 md:px-10 border-t-[3px] border-[var(--color-text)] relative" ref={ref}>
+    <footer className="py-16 md:py-24 pl-7 pr-5 md:pl-20 md:pr-10 border-t-[3px] border-[var(--color-text)] relative" ref={ref}>
       {/* Film strip top */}
       <div className="absolute top-0 left-0 right-0 h-2 bg-[var(--color-dark)] opacity-10">
         <div className="flex gap-0.5 h-full">
