@@ -5,7 +5,6 @@ import { useRef } from "react";
 
 interface MarqueeTextProps {
   text: string;
-  speed?: number;
   className?: string;
   variant?: "default" | "accent" | "handwritten" | "retro";
 }
@@ -19,10 +18,10 @@ export default function MarqueeText({
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
   const variants = {
-    default: "text-[var(--color-cream)]",
+    default: "text-[var(--color-text)]",
     accent: "text-[var(--color-neon)]",
     handwritten: "text-[var(--color-orange)]",
-    retro: "text-[var(--color-vhs-blue)]",
+    retro: "text-[var(--color-electric)]",
   };
 
   const fontVariants = {
@@ -48,7 +47,7 @@ export default function MarqueeText({
     >
       <motion.div
         initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 0.12 } : {}}
+        animate={inView ? { opacity: 0.1 } : {}}
         transition={{ duration: 1.5 }}
         className={`marquee-left inline-block ${variants[variant]} ${fontVariants[variant]} ${sizeVariants[variant]} font-black tracking-tight italic uppercase leading-none`}
       >

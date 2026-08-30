@@ -27,7 +27,6 @@ export default function Cursor() {
       el.addEventListener("mouseleave", () => setHovering(false));
     });
 
-    // Smooth dot follow
     let raf: number;
     let dx = 0, dy = 0;
     const animate = () => {
@@ -48,7 +47,6 @@ export default function Cursor() {
 
   return (
     <>
-      {/* T-shirt cursor */}
       <div
         className="custom-cursor hidden md:block"
         style={{
@@ -63,10 +61,8 @@ export default function Cursor() {
           viewBox="0 0 64 64"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className={hovering ? "hovering" : ""}
           style={{ transition: "all 0.15s ease-out" }}
         >
-          {/* T-shirt shape */}
           <path
             d="M18 8L28 4H36L46 8L56 16V28L48 24H16L8 28V16L18 8Z"
             fill={hovering ? "var(--color-orange)" : "var(--color-neon)"}
@@ -79,19 +75,16 @@ export default function Cursor() {
             stroke={hovering ? "var(--color-orange)" : "var(--color-neon)"}
             strokeWidth="1.5"
           />
-          {/* Collar */}
           <path
             d="M28 4C30 8 34 8 36 4"
-            stroke={hovering ? "#0d0b08" : "#0d0b08"}
+            stroke="white"
             strokeWidth="1.5"
             fill="none"
           />
-          {/* Small logo on chest */}
-          <circle cx="32" cy="34" r="4" fill="#0d0b08" opacity="0.3" />
+          <circle cx="32" cy="34" r="4" fill="white" opacity="0.4" />
         </svg>
       </div>
 
-      {/* Trailing dot */}
       <div
         className="cursor-dot hidden md:block"
         style={{

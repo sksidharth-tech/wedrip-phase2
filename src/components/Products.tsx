@@ -32,11 +32,7 @@ function ProductCard({
       transition={{ duration: 0.7, delay: index * 0.1 }}
       className="product-card group"
     >
-      {/* Image */}
-      <div
-        className="relative aspect-[3/4] overflow-hidden mb-4 noise-hover"
-        style={{ backgroundColor: product.bgColor }}
-      >
+      <div className="relative aspect-[3/4] overflow-hidden mb-4 noise-hover retro-border bg-white">
         <Image
           src={product.image}
           alt={product.name}
@@ -45,26 +41,22 @@ function ProductCard({
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
 
-        {/* VHS overlay on image */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.4)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,23,20,0.3)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-        {/* Number tag */}
-        <div className="absolute top-3 left-3 font-[var(--font-retro)] text-[10px] text-[var(--color-cream-muted)] tracking-[0.15em] bg-[rgba(0,0,0,0.5)] px-2 py-1 backdrop-blur-sm">
+        <div className="absolute top-3 left-3 font-[var(--font-retro)] text-[10px] text-[var(--color-text)] tracking-[0.15em] bg-white px-2 py-1 border border-[var(--color-text)] shadow-[2px_2px_0_var(--color-text)]">
           {product.number}
         </div>
 
-        {/* Category badge */}
-        <div className="absolute top-3 right-3 font-[var(--font-mono)] text-[8px] text-[var(--color-neon)] tracking-[0.2em] bg-[rgba(0,0,0,0.5)] px-2 py-1 backdrop-blur-sm uppercase">
+        <div className="absolute top-3 right-3 font-[var(--font-mono)] text-[8px] text-[var(--color-neon)] tracking-[0.2em] bg-white px-2 py-1 border border-[var(--color-neon)] shadow-[2px_2px_0_var(--color-neon)] uppercase">
           {product.category}
         </div>
 
-        {/* Add button */}
         <button
           onClick={handleAdd}
           className={`absolute bottom-3 right-3 w-10 h-10 flex items-center justify-center border transition-all duration-300 ${
             added
-              ? "bg-[var(--color-neon)] border-[var(--color-neon)] text-[var(--color-bg)] scale-110"
-              : "bg-[var(--color-bg)] border-[var(--color-neon)] text-[var(--color-neon)] opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
+              ? "bg-[var(--color-lime)] border-[var(--color-lime)] text-white scale-110 shadow-[2px_2px_0_var(--color-text)]"
+              : "bg-white border-[var(--color-text)] text-[var(--color-text)] opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 shadow-[2px_2px_0_var(--color-text)]"
           }`}
           aria-label={`Add ${product.name} to bag`}
         >
@@ -81,11 +73,10 @@ function ProductCard({
         </button>
       </div>
 
-      {/* Info */}
       <div className="flex justify-between items-start">
         <div>
           <h3
-            className="text-sm font-semibold tracking-wide mb-1"
+            className="text-sm font-semibold tracking-wide mb-1 text-[var(--color-text)]"
             style={{ fontFamily: "var(--font-futuristic)" }}
           >
             {product.name}
@@ -93,7 +84,7 @@ function ProductCard({
           <p className="font-[var(--font-handwritten)] text-sm text-[var(--color-orange)] mb-1">
             {product.tagline}
           </p>
-          <p className="font-[var(--font-mono)] text-[9px] text-[var(--color-cream-muted)] tracking-[0.1em]">
+          <p className="font-[var(--font-mono)] text-[9px] text-[var(--color-text-muted)] tracking-[0.1em]">
             {product.gsm} / LIMITED RUN
           </p>
         </div>
@@ -118,13 +109,12 @@ export default function Products({
   return (
     <section className="py-20 md:py-32 px-5 md:px-10" id="objects" ref={ref}>
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex justify-between items-baseline mb-8 pb-4 border-b border-[rgba(255,255,255,0.06)]">
+        <div className="flex justify-between items-baseline mb-8 pb-4 border-b-2 border-[var(--color-text)]">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="font-[var(--font-mono)] text-xs tracking-[0.3em] font-bold"
+            className="font-[var(--font-mono)] text-xs tracking-[0.3em] font-bold text-[var(--color-text)]"
           >
             THE OBJECTS
           </motion.h2>
@@ -132,14 +122,13 @@ export default function Products({
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex gap-6 font-[var(--font-mono)] text-[10px] text-[var(--color-cream-muted)] tracking-[0.15em]"
+            className="flex gap-6 font-[var(--font-mono)] text-[10px] text-[var(--color-text-muted)] tracking-[0.15em]"
           >
             <span>DROP 001</span>
             <span>VIEW [{products.length}]</span>
           </motion.div>
         </div>
 
-        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {products.map((product, i) => (
             <ProductCard

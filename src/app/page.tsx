@@ -70,18 +70,18 @@ export default function Home() {
         {/* Retro editorial quote */}
         <div className="py-16 md:py-24 px-5 md:px-10 bg-[var(--color-bg-warm)] editorial-stripe">
           <div className="max-w-5xl mx-auto text-center">
-            <p className="font-[var(--font-retro)] text-lg md:text-2xl text-[var(--color-vhs-blue)] tracking-[0.2em] mb-6">
+            <p className="font-[var(--font-retro)] text-lg md:text-2xl text-[var(--color-electric)] tracking-[0.2em] mb-6">
               ▶ PLAY ▶ PAUSE ▶ REWIND
             </p>
             <p
-              className="text-3xl md:text-5xl lg:text-6xl font-black text-[var(--color-cream)] leading-tight"
+              className="text-3xl md:text-5xl lg:text-6xl font-black text-[var(--color-text)] leading-tight"
               style={{ fontFamily: "var(--font-editorial)" }}
             >
               every thread tells a story.
               <br />
               <span className="text-[var(--color-neon)]">every drop starts a chapter.</span>
             </p>
-            <p className="font-[var(--font-handwritten)] text-xl md:text-2xl text-[var(--color-cream-muted)] mt-8">
+            <p className="font-[var(--font-handwritten)] text-xl md:text-2xl text-[var(--color-text-muted)] mt-8">
               — from the WEDRIP studio, with love and chaos
             </p>
           </div>
