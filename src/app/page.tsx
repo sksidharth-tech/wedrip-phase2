@@ -31,30 +31,46 @@ export default function Home() {
       <Header bagCount={bagItems.length} />
 
       {/* Film strip border top */}
-      <div className="fixed top-8 left-0 right-0 h-1 bg-[repeating-linear-gradient(90deg,var(--color-text)_0px,var(--color-text)_8px,transparent_8px,transparent_16px)] z-[998] opacity-10" />
+      <div className="fixed top-8 left-0 right-0 h-1.5 bg-[var(--color-dark)] z-[998] opacity-10">
+        <div className="flex gap-0.5 h-full">
+          {Array.from({ length: 100 }).map((_, i) => (
+            <div key={i} className="flex-1 bg-[var(--color-cream)] opacity-40" />
+          ))}
+        </div>
+      </div>
 
       <main>
         <Hero />
 
-        {/* Film strip divider */}
-        <div className="w-full overflow-hidden py-2 bg-[var(--color-dark)]">
-          <div className="flex gap-1">
-            {Array.from({ length: 40 }).map((_, i) => (
-              <div key={i} className="w-8 h-5 border border-[var(--color-cream)] opacity-30 flex-shrink-0" />
+        {/* Film strip divider with sprocket holes */}
+        <div className="w-full overflow-hidden py-3 bg-[var(--color-dark)] relative">
+          <div className="flex gap-1 justify-center">
+            {Array.from({ length: 50 }).map((_, i) => (
+              <div key={i} className="flex flex-col items-center gap-1">
+                <div className="w-3 h-2 bg-[var(--color-cream)] opacity-20" />
+                <div className="w-10 h-6 border border-[var(--color-cream)] opacity-30" />
+                <div className="w-3 h-2 bg-[var(--color-cream)] opacity-20" />
+              </div>
             ))}
           </div>
         </div>
 
         <Manifesto />
 
-        {/* VHS static noise bar */}
-        <div className="w-full h-16 bg-[var(--color-dark)] relative overflow-hidden flex items-center">
-          <div className="absolute inset-0 opacity-20" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            backgroundSize: "100px 100px",
+        {/* VHS static noise bar with CRT effect */}
+        <div className="w-full h-20 bg-[var(--color-dark)] relative overflow-hidden flex items-center">
+          {/* Static noise background */}
+          <div className="absolute inset-0 tv-static opacity-15" />
+          {/* Horizontal lines */}
+          <div className="absolute inset-0" style={{
+            background: "repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.02) 2px,rgba(255,255,255,0.02) 4px)"
           }} />
-          <div className="w-full text-center font-[var(--font-retro)] text-[var(--color-cream)] text-xs tracking-[0.5em] opacity-40 relative z-10">
+          <div className="w-full text-center font-[var(--font-retro)] text-[var(--color-cream)] text-xs tracking-[0.5em] opacity-50 relative z-10">
             ▮▮▮ SIGNAL LOST ▮▮▮ TRACKING ▮▮▮ AUTO FOCUS ▮▮▮
+          </div>
+          {/* VHS timestamp */}
+          <div className="absolute bottom-2 right-4 font-[var(--font-retro)] text-[9px] text-[var(--color-orange)] tracking-[0.2em] opacity-60">
+            SP / 00:42:17
           </div>
         </div>
 
@@ -66,46 +82,88 @@ export default function Home() {
           />
         </div>
 
-        {/* Retro TV frame quote */}
+        {/* Swiss grid quote section - NO black background */}
         <div className="py-12 md:py-20 px-5">
-          <div className="max-w-4xl mx-auto border-4 border-[var(--color-text)] p-8 md:p-12 relative" style={{ boxShadow: "8px 8px 0 var(--color-text)" }}>
-            {/* TV knobs */}
-            <div className="absolute top-4 right-4 flex flex-col gap-2">
-              <div className="w-4 h-4 rounded-full border-2 border-[var(--color-text)]" />
-              <div className="w-4 h-4 rounded-full border-2 border-[var(--color-text)]" />
-            </div>
-            {/* TV brand */}
-            <div className="absolute top-4 left-4 font-[var(--font-mono)] text-[8px] text-[var(--color-text-muted)] tracking-[0.3em]">
-              WEDRIP CRT-2026
-            </div>
-            {/* TV screen */}
-            <div className="bg-[var(--color-dark)] p-6 md:p-10 relative overflow-hidden">
-              {/* Scanlines on TV */}
-              <div className="absolute inset-0 pointer-events-none" style={{
-                background: "repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(255,255,255,0.03) 1px,rgba(255,255,255,0.03) 2px)"
-              }} />
-              <p className="font-[var(--font-handwritten)] text-3xl md:text-5xl lg:text-6xl text-[var(--color-neon)] text-center leading-snug relative z-10">
-                &quot;the world has enough plain clothes.
-                <br />
-                <span className="text-[var(--color-orange)]">wear something that says something.&quot;</span>
-              </p>
-              {/* VHS timestamp */}
-              <div className="absolute bottom-3 right-4 font-[var(--font-retro)] text-[10px] text-[var(--color-orange)] tracking-[0.2em]">
-                PLAY ▶ 00:00:00
+          <div className="max-w-5xl mx-auto">
+            {/* Swiss grid layout */}
+            <div className="grid grid-cols-12 gap-4">
+              {/* Left decorative column */}
+              <div className="col-span-1 hidden md:flex flex-col items-center gap-2 pt-4">
+                <div className="w-px h-16 bg-[var(--color-text)] opacity-20" />
+                <div className="w-2 h-2 border border-[var(--color-text)] opacity-30" />
+                <div className="w-px h-16 bg-[var(--color-text)] opacity-20" />
+                <div className="w-2 h-2 border border-[var(--color-text)] opacity-30" />
+                <div className="w-px h-16 bg-[var(--color-text)] opacity-20" />
+              </div>
+
+              {/* Main content */}
+              <div className="col-span-12 md:col-span-10 relative">
+                {/* Handwritten quote with tape */}
+                <div className="relative inline-block mb-6">
+                  <div className="absolute -top-3 left-6 w-16 h-5 bg-[var(--color-neon)] opacity-40 rotate-[-2deg]" />
+                  <div className="absolute -top-2 right-8 w-12 h-4 bg-[var(--color-orange)] opacity-30 rotate-[1deg]" />
+                </div>
+
+                <p className="font-[var(--font-handwritten)] text-3xl md:text-5xl lg:text-6xl text-[var(--color-text)] text-center leading-snug relative z-10 mb-8">
+                  &quot;the world has enough plain clothes.
+                  <br />
+                  <span className="text-[var(--color-orange)]">wear something that says something.&quot;</span>
+                </p>
+
+                {/* Swiss-style attribution */}
+                <div className="flex items-center justify-center gap-4 mt-8">
+                  <div className="w-12 h-px bg-[var(--color-text)] opacity-30" />
+                  <span className="font-[var(--font-mono)] text-[10px] text-[var(--color-text-muted)] tracking-[0.3em] uppercase">
+                    WEDRIP Studio Manifesto
+                  </span>
+                  <div className="w-12 h-px bg-[var(--color-text)] opacity-30" />
+                </div>
+
+                {/* Decorative pixel dots */}
+                <div className="flex justify-center gap-1 mt-6">
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <div key={i} className="w-1.5 h-1.5 bg-[var(--color-neon)] opacity-40" />
+                  ))}
+                </div>
+              </div>
+
+              {/* Right decorative column */}
+              <div className="col-span-1 hidden md:flex flex-col items-center gap-2 pt-4">
+                <div className="w-px h-16 bg-[var(--color-text)] opacity-20" />
+                <div className="w-2 h-2 border border-[var(--color-text)] opacity-30" />
+                <div className="w-px h-16 bg-[var(--color-text)] opacity-20" />
+                <div className="w-2 h-2 border border-[var(--color-text)] opacity-30" />
+                <div className="w-px h-16 bg-[var(--color-text)] opacity-20" />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Cassette tape divider */}
-        <div className="w-full py-6 bg-[var(--color-bg-warm)] border-y-2 border-[var(--color-text)] flex items-center justify-center gap-4">
-          <div className="w-12 h-2 bg-[var(--color-text)] opacity-20" />
-          <div className="w-2 h-2 rounded-full border border-[var(--color-text)] opacity-30" />
-          <div className="font-[var(--font-retro)] text-xs text-[var(--color-text-muted)] tracking-[0.5em]">
-            ◀◀ SIDE A ▶▶ SIDE B
+        {/* Cassette tape divider with retro typography */}
+        <div className="w-full py-8 bg-[var(--color-bg-warm)] border-y-2 border-[var(--color-text)] relative overflow-hidden">
+          {/* Diagonal stripe pattern */}
+          <div className="absolute inset-0 opacity-5" style={{
+            background: "repeating-linear-gradient(-45deg,transparent,transparent 4px,var(--color-text) 4px,var(--color-text) 5px)"
+          }} />
+          <div className="flex items-center justify-center gap-6 relative z-10">
+            <div className="font-[var(--font-retro)] text-xs text-[var(--color-text-muted)] tracking-[0.3em]">
+              ◀◀
+            </div>
+            <div className="w-16 h-1 bg-[var(--color-text)] opacity-20" />
+            <div className="w-3 h-3 rounded-full border-2 border-[var(--color-text)] opacity-40" />
+            <div className="font-[var(--font-retro)] text-sm text-[var(--color-text)] tracking-[0.5em] font-bold">
+              SIDE A
+            </div>
+            <div className="w-3 h-3 rounded-full border-2 border-[var(--color-text)] opacity-40" />
+            <div className="w-16 h-1 bg-[var(--color-text)] opacity-20" />
+            <div className="font-[var(--font-retro)] text-xs text-[var(--color-text-muted)] tracking-[0.3em]">
+              ▶▶
+            </div>
           </div>
-          <div className="w-2 h-2 rounded-full border border-[var(--color-text)] opacity-30" />
-          <div className="w-12 h-2 bg-[var(--color-text)] opacity-20" />
+          {/* Cassette brand label */}
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 font-[var(--font-mono)] text-[7px] text-[var(--color-text-muted)] tracking-[0.4em] opacity-40">
+            WEDRIP RECORDS™ CHENNAI
+          </div>
         </div>
 
         {/* Products */}
@@ -119,7 +177,7 @@ export default function Home() {
           />
         </div>
 
-        {/* VHS Player UI section */}
+        {/* VHS Player UI section with Swiss grid */}
         <div className="py-16 md:py-24 px-5 md:px-10 bg-[var(--color-bg-warm)] editorial-stripe relative">
           {/* VCR overlay */}
           <div className="absolute top-4 left-4 font-[var(--font-retro)] text-[9px] text-[var(--color-text-muted)] tracking-[0.2em] opacity-40">
@@ -129,7 +187,21 @@ export default function Home() {
             SP / Hi-Fi STEREO
           </div>
 
-          <div className="max-w-5xl mx-auto text-center relative">
+          {/* Film perforations left */}
+          <div className="absolute left-0 top-0 bottom-0 w-6 flex flex-col justify-center gap-2 opacity-10">
+            {Array.from({ length: 20 }).map((_, i) => (
+              <div key={i} className="w-4 h-3 border border-[var(--color-text)] mx-auto" />
+            ))}
+          </div>
+
+          {/* Film perforations right */}
+          <div className="absolute right-0 top-0 bottom-0 w-6 flex flex-col justify-center gap-2 opacity-10">
+            {Array.from({ length: 20 }).map((_, i) => (
+              <div key={i} className="w-4 h-3 border border-[var(--color-text)] mx-auto" />
+            ))}
+          </div>
+
+          <div className="max-w-5xl mx-auto text-center relative z-10">
             <p className="font-[var(--font-retro)] text-lg md:text-2xl text-[var(--color-electric)] tracking-[0.2em] mb-6">
               ▶ PLAY ▶ PAUSE ▶ REWIND
             </p>
@@ -141,19 +213,23 @@ export default function Home() {
               <br />
               <span className="text-[var(--color-neon)]">every drop starts a chapter.</span>
             </p>
-            <p className="font-[var(--font-handwritten)] text-xl md:text-2xl text-[var(--color-text-muted)] mt-8">
-              — from the WEDRIP studio, with love and chaos
-            </p>
 
-            {/* Decorative film frames */}
-            <div className="absolute -left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-1 opacity-15">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="w-6 h-4 border border-[var(--color-text)]" />
-              ))}
+            {/* Handwritten annotation */}
+            <div className="mt-10 relative inline-block">
+              <div className="absolute -top-2 left-4 w-14 h-4 bg-[var(--color-neon)] opacity-30 rotate-[-1deg]" />
+              <p className="font-[var(--font-handwritten)] text-xl md:text-2xl text-[var(--color-text-muted)] bg-[var(--color-bg)] px-6 py-3 border border-dashed border-[var(--color-text)] relative z-10">
+                — from the WEDRIP studio, with love and chaos
+              </p>
             </div>
-            <div className="absolute -right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-1 opacity-15">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="w-6 h-4 border border-[var(--color-text)]" />
+
+            {/* Swiss-style decorative grid lines */}
+            <div className="flex justify-center gap-2 mt-8">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <div key={i} className="flex flex-col items-center gap-1">
+                  <div className="w-px h-8 bg-[var(--color-text)] opacity-15" />
+                  <div className="w-1.5 h-1.5 bg-[var(--color-neon)] opacity-30" />
+                  <div className="w-px h-8 bg-[var(--color-text)] opacity-15" />
+                </div>
               ))}
             </div>
           </div>
@@ -163,10 +239,14 @@ export default function Home() {
         <Drop />
 
         {/* Film strip divider */}
-        <div className="w-full overflow-hidden py-2 bg-[var(--color-dark)]">
-          <div className="flex gap-1">
-            {Array.from({ length: 40 }).map((_, i) => (
-              <div key={i} className="w-8 h-5 border border-[var(--color-cream)] opacity-30 flex-shrink-0" />
+        <div className="w-full overflow-hidden py-3 bg-[var(--color-dark)] relative">
+          <div className="flex gap-1 justify-center">
+            {Array.from({ length: 50 }).map((_, i) => (
+              <div key={i} className="flex flex-col items-center gap-1">
+                <div className="w-3 h-2 bg-[var(--color-cream)] opacity-20" />
+                <div className="w-10 h-6 border border-[var(--color-cream)] opacity-30" />
+                <div className="w-3 h-2 bg-[var(--color-cream)] opacity-20" />
+              </div>
             ))}
           </div>
         </div>
@@ -179,19 +259,37 @@ export default function Home() {
           />
         </div>
 
-        {/* VHS end screen */}
-        <div className="w-full py-12 bg-[var(--color-dark)] flex flex-col items-center gap-4">
-          <div className="font-[var(--font-retro)] text-[var(--color-cream)] text-sm tracking-[0.5em] opacity-50">
+        {/* VHS end screen with retro elements */}
+        <div className="w-full py-16 bg-[var(--color-dark)] flex flex-col items-center gap-6 relative overflow-hidden">
+          {/* Static noise */}
+          <div className="absolute inset-0 tv-static opacity-10" />
+          
+          <div className="font-[var(--font-retro)] text-[var(--color-cream)] text-sm tracking-[0.5em] opacity-60 relative z-10">
             ■ END OF TAPE ■
           </div>
-          <div className="flex gap-2">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="w-1 h-1 bg-[var(--color-neon)] opacity-30" />
+          
+          {/* Pixel art decorative element */}
+          <div className="flex gap-1 relative z-10">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <div key={i} className="w-2 h-2 bg-[var(--color-neon)] opacity-40" />
             ))}
           </div>
-          <div className="font-[var(--font-retro)] text-[var(--color-orange)] text-xs tracking-[0.3em] blink">
-            ● REC
+          
+          <div className="flex gap-3 items-center relative z-10">
+            <div className="font-[var(--font-retro)] text-[var(--color-orange)] text-xs tracking-[0.3em] blink">
+              ● REC
+            </div>
+            <div className="w-1 h-1 bg-[var(--color-cream)] opacity-30" />
+            <div className="font-[var(--font-retro)] text-[var(--color-cream)] text-[10px] tracking-[0.2em] opacity-40">
+              SP MODE
+            </div>
           </div>
+
+          {/* Decorative corner brackets */}
+          <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-[var(--color-cream)] opacity-20" />
+          <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-[var(--color-cream)] opacity-20" />
+          <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-[var(--color-cream)] opacity-20" />
+          <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-[var(--color-cream)] opacity-20" />
         </div>
       </main>
 
