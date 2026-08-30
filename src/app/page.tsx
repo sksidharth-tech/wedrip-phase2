@@ -81,7 +81,7 @@ export default function Home() {
 
         {/* Quote section - Swiss grid + Handwritten */}
         <div className="py-12 md:py-20 px-5">
-          <div className="max-w-5xl mx-auto ml-6 md:ml-12">
+          <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-12 gap-4">
               {/* Left decorative column - Swiss */}
               <div className="col-span-1 hidden md:flex flex-col items-center gap-2 pt-4">
@@ -193,7 +193,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="max-w-5xl mx-auto text-center relative z-10 ml-6 md:ml-12">
+          <div className="max-w-5xl mx-auto text-center relative z-10">
             <p className="font-[var(--font-retro)] text-lg md:text-2xl text-[var(--color-electric)] tracking-[0.2em] mb-6">
               ▶ PLAY ▶ PAUSE ▶ REWIND
             </p>

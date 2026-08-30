@@ -56,7 +56,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-5xl ml-6 md:ml-12">
+      <div className="relative z-10 text-center max-w-5xl">
         {/* Pixel art label */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
