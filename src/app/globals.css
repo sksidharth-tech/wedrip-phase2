@@ -28,7 +28,7 @@
 
 ::selection {
   background: var(--color-neon);
-  color: white;
+  color: var(--color-dark);
 }
 
 html {
@@ -44,9 +44,9 @@ body {
 }
 
 /* ─── SCROLLBAR ─── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--color-bg); }
-::-webkit-scrollbar-thumb { background: var(--color-text-muted); border-radius: 3px; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg-warm); border-left: 1px solid rgba(26,23,20,0.1); }
+::-webkit-scrollbar-thumb { background: var(--color-text); border: 1px solid var(--color-bg); }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-neon); }
 
 /* ─── GRAIN OVERLAY ─── */
@@ -55,7 +55,7 @@ body {
   inset: 0;
   z-index: 9000;
   pointer-events: none;
-  opacity: 0.025;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 128px 128px;
 }
@@ -70,8 +70,8 @@ body {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.008) 2px,
-    rgba(0, 0, 0, 0.008) 4px
+    rgba(0, 0, 0, 0.01) 2px,
+    rgba(0, 0, 0, 0.01) 4px
   );
 }
 
@@ -85,11 +85,11 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.06);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(26,23,20,0.08), transparent);
   z-index: 9002;
   pointer-events: none;
-  animation: vhsTracking 8s linear infinite;
+  animation: vhsTracking 6s linear infinite;
 }
 
 /* ─── TICKER ─── */
@@ -100,23 +100,6 @@ body {
 
 .ticker-content {
   animation: tickerScroll 25s linear infinite;
-}
-
-/* ─── CUSTOM CURSOR ─── */
-.custom-cursor {
-  position: fixed;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.2s, width 0.15s, height 0.15s;
-}
-
-.cursor-dot {
-  position: fixed;
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%, -50%);
-  transition: transform 0.4s ease-out;
 }
 
 /* ─── CASSETTE REEL ─── */
@@ -157,6 +140,15 @@ body {
   animation: marqueeLeft 30s linear infinite;
 }
 
+@keyframes marqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.marquee-right {
+  animation: marqueeRight 35s linear infinite;
+}
+
 /* ─── FLOAT ─── */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -178,6 +170,36 @@ body {
   animation: stampRotate 6s ease-in-out infinite;
 }
 
+/* ─── TV STATIC ─── */
+@keyframes tvStatic {
+  0% { background-position: 0 0; }
+  100% { background-position: 100% 100%; }
+}
+
+.tv-static {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  animation: tvStatic 0.5s steps(10) infinite;
+}
+
+/* ─── VHS GLITCH ─── */
+@keyframes vhsGlitch {
+  0%, 100% { transform: translate(0); }
+  10% { transform: translate(-2px, 1px); }
+  20% { transform: translate(2px, -1px); }
+  30% { transform: translate(-1px, 2px); }
+  40% { transform: translate(1px, -2px); }
+  50% { transform: translate(-2px, 0); }
+  60% { transform: translate(2px, 1px); }
+  70% { transform: translate(0, -1px); }
+  80% { transform: translate(-1px, 0); }
+  90% { transform: translate(1px, 2px); }
+}
+
+.vhs-glitch:hover {
+  animation: vhsGlitch 0.3s ease-in-out;
+}
+
 /* ─── NOISE TEXTURE ON HOVER ─── */
 .noise-hover {
   position: relative;
@@ -187,9 +209,10 @@ body {
   position: absolute;
   inset: 0;
   opacity: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.1'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
   transition: opacity 0.3s;
   pointer-events: none;
+  mix-blend-mode: multiply;
 }
 .noise-hover:hover::after {
   opacity: 1;
@@ -201,8 +224,8 @@ body {
     -45deg,
     transparent,
     transparent 4px,
-    rgba(37, 99, 235, 0.02) 4px,
-    rgba(37, 99, 235, 0.02) 8px
+    rgba(234, 179, 8, 0.02) 4px,
+    rgba(234, 179, 8, 0.02) 8px
   );
 }
 
@@ -225,7 +248,7 @@ body {
 
 /* ─── GLOW TEXT ─── */
 .glow-text {
-  text-shadow: 0 0 20px rgba(37, 99, 235, 0.2), 0 0 40px rgba(37, 99, 235, 0.1);
+  text-shadow: 0 0 20px rgba(234, 179, 8, 0.3), 0 0 40px rgba(234, 179, 8, 0.15);
 }
 
 /* ─── RETRO BORDER ─── */
@@ -239,10 +262,173 @@ body {
   box-shadow: 4px 4px 0 var(--color-neon);
 }
 
+.retro-border-orange {
+  border: 2px solid var(--color-orange);
+  box-shadow: 4px 4px 0 var(--color-orange);
+}
+
 /* ─── PAPER TEXTURE ─── */
 .paper-bg {
   background-image: 
-    radial-gradient(ellipse at 20% 50%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 50%, rgba(234, 179, 8, 0.03) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 80%, rgba(232, 85, 61, 0.02) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(124, 58, 237, 0.02) 0%, transparent 50%);
+}
+
+/* ─── VHS OVERLAY ─── */
+.vhs-overlay {
+  position: relative;
+}
+.vhs-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.02) 2px,
+    rgba(255, 255, 255, 0.02) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── FILM STRIP BORDER ─── */
+.film-strip-border {
+  position: relative;
+}
+.film-strip-border::before,
+.film-strip-border::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-text) 0px,
+    var(--color-text) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  opacity: 0.15;
+}
+.film-strip-border::before { top: 0; }
+.film-strip-border::after { bottom: 0; }
+
+/* ─── RETRO TV FRAME ─── */
+.retro-tv {
+  border: 4px solid var(--color-text);
+  box-shadow: 8px 8px 0 var(--color-text), inset 0 0 30px rgba(26,23,20,0.1);
+  background: var(--color-dark);
+  position: relative;
+}
+
+.retro-tv::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(255,255,255,0.05);
+  pointer-events: none;
+}
+
+/* ─── CASSETTE BODY ─── */
+.cassette-body {
+  background: linear-gradient(145deg, #f5f0e8, #ebe5d8);
+  border: 2px solid var(--color-text);
+  box-shadow: 4px 4px 0 var(--color-text);
+  position: relative;
+}
+
+.cassette-body::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 50%;
+  border: 1px dashed rgba(26,23,20,0.2);
+}
+
+/* ─── VINYL GROOVES ─── */
+.vinyl-grooves {
+  background: repeating-radial-gradient(
+    circle at center,
+    var(--color-dark) 0px,
+    var(--color-dark) 2px,
+    #2a2a2a 2px,
+    #2a2a2a 3px
+  );
+}
+
+/* ─── CHROMATIC ABERRATION ─── */
+.chromatic {
+  position: relative;
+}
+.chromatic::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  top: 0;
+  color: var(--color-orange);
+  opacity: 0.5;
+  z-index: -1;
+}
+.chromatic::after {
+  content: attr(data-text);
+  position: absolute;
+  left: -2px;
+  top: 0;
+  color: var(--color-neon);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+/* ─── RETRO PIXEL BORDER ─── */
+.pixel-border {
+  border-image: repeating-linear-gradient(
+    90deg,
+    var(--color-text) 0px,
+    var(--color-text) 4px,
+    transparent 4px,
+    transparent 8px
+  ) 4;
+}
+
+/* ─── WORN PAPER EDGE ─── */
+.worn-edge {
+  position: relative;
+}
+.worn-edge::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-bg) 0%,
+    transparent 5%,
+    var(--color-bg) 10%,
+    transparent 15%,
+    var(--color-bg) 20%,
+    transparent 25%,
+    var(--color-bg) 30%,
+    transparent 35%,
+    var(--color-bg) 40%,
+    transparent 45%,
+    var(--color-bg) 50%,
+    transparent 55%,
+    var(--color-bg) 60%,
+    transparent 65%,
+    var(--color-bg) 70%,
+    transparent 75%,
+    var(--color-bg) 80%,
+    transparent 85%,
+    var(--color-bg) 90%,
+    transparent 95%,
+    var(--color-bg) 100%
+  );
 }

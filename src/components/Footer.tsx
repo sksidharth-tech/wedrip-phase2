@@ -8,7 +8,16 @@ export default function Footer() {
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <footer className="py-16 md:py-24 px-5 md:px-10 border-t-2 border-[var(--color-text)]" ref={ref}>
+    <footer className="py-16 md:py-24 px-5 md:px-10 border-t-4 border-[var(--color-text)] relative" ref={ref}>
+      {/* Film strip top */}
+      <div className="absolute top-0 left-0 right-0 h-2 bg-[var(--color-dark)] opacity-10">
+        <div className="flex gap-0.5 h-full">
+          {Array.from({ length: 100 }).map((_, i) => (
+            <div key={i} className="flex-1 bg-[var(--color-cream)] opacity-30" />
+          ))}
+        </div>
+      </div>
+
       <div className="max-w-6xl mx-auto">
         <motion.a
           href="#"
@@ -25,8 +34,10 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
+            className="relative"
           >
-            <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
+            <div className="absolute -left-2 top-0 bottom-0 w-1 bg-[var(--color-neon)] opacity-30" />
+            <p className="text-sm text-[var(--color-text-muted)] leading-relaxed pl-4">
               Objects, uniforms and wearable worlds built with independent creators. Each piece is a collaboration, not a commodity.
             </p>
           </motion.div>
@@ -35,8 +46,10 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
           >
-            <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
+            <div className="absolute -left-2 top-0 bottom-0 w-1 bg-[var(--color-orange)] opacity-30" />
+            <p className="text-sm text-[var(--color-text-muted)] leading-relaxed pl-4">
               CHENNAI, INDIA
               <br />
               HELLO@WEDRIP.IN
@@ -47,8 +60,10 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative"
           >
-            <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
+            <div className="absolute -left-2 top-0 bottom-0 w-1 bg-[var(--color-electric)] opacity-30" />
+            <p className="text-sm text-[var(--color-text-muted)] leading-relaxed pl-4">
               <a href="#" className="hover:text-[var(--color-neon)] transition-colors">INSTAGRAM ↗</a>
               <br />
               <a href="#" className="hover:text-[var(--color-neon)] transition-colors">SHIPPING & RETURNS</a>
@@ -56,10 +71,20 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        <div className="pt-6 border-t border-[rgba(26,23,20,0.1)] text-center">
+        {/* Bottom bar with retro elements */}
+        <div className="pt-6 border-t-2 border-[var(--color-text)] flex flex-col md:flex-row justify-between items-center gap-4">
           <small className="font-[var(--font-mono)] text-[10px] text-[var(--color-text-muted)] tracking-[0.15em]">
             © 2026 WEDRIP STUDIO — ALL RIGHTS RESERVED
           </small>
+          <div className="flex items-center gap-4">
+            <div className="font-[var(--font-retro)] text-[10px] text-[var(--color-text-muted)] tracking-[0.2em]">
+              PAL / NTSC
+            </div>
+            <div className="w-2 h-2 rounded-full border border-[var(--color-text)] opacity-30" />
+            <div className="font-[var(--font-retro)] text-[10px] text-[var(--color-text-muted)] tracking-[0.2em]">
+              SP MODE
+            </div>
+          </div>
         </div>
       </div>
     </footer>

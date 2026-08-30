@@ -33,6 +33,11 @@ function ProductCard({
       className="product-card group"
     >
       <div className="relative aspect-[3/4] overflow-hidden mb-4 noise-hover retro-border bg-white">
+        {/* VHS scanlines overlay */}
+        <div className="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{
+          background: "repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,0.03) 1px,rgba(0,0,0,0.03) 2px)"
+        }} />
+
         <Image
           src={product.image}
           alt={product.name}
@@ -41,19 +46,23 @@ function ProductCard({
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,23,20,0.3)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        {/* Dark overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,23,20,0.4)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-        <div className="absolute top-3 left-3 font-[var(--font-retro)] text-[10px] text-[var(--color-text)] tracking-[0.15em] bg-white px-2 py-1 border border-[var(--color-text)] shadow-[2px_2px_0_var(--color-text)]">
+        {/* Film frame number */}
+        <div className="absolute top-3 left-3 font-[var(--font-retro)] text-[10px] text-[var(--color-text)] tracking-[0.15em] bg-white px-2 py-1 border border-[var(--color-text)] shadow-[2px_2px_0_var(--color-text)] z-20">
           {product.number}
         </div>
 
-        <div className="absolute top-3 right-3 font-[var(--font-mono)] text-[8px] text-[var(--color-neon)] tracking-[0.2em] bg-white px-2 py-1 border border-[var(--color-neon)] shadow-[2px_2px_0_var(--color-neon)] uppercase">
+        {/* Category badge */}
+        <div className="absolute top-3 right-3 font-[var(--font-mono)] text-[8px] text-[var(--color-neon)] tracking-[0.2em] bg-white px-2 py-1 border border-[var(--color-neon)] shadow-[2px_2px_0_var(--color-neon)] uppercase z-20">
           {product.category}
         </div>
 
+        {/* Add button */}
         <button
           onClick={handleAdd}
-          className={`absolute bottom-3 right-3 w-10 h-10 flex items-center justify-center border transition-all duration-300 ${
+          className={`absolute bottom-3 right-3 w-10 h-10 flex items-center justify-center border transition-all duration-300 z-20 ${
             added
               ? "bg-[var(--color-lime)] border-[var(--color-lime)] text-white scale-110 shadow-[2px_2px_0_var(--color-text)]"
               : "bg-white border-[var(--color-text)] text-[var(--color-text)] opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 shadow-[2px_2px_0_var(--color-text)]"
@@ -71,6 +80,9 @@ function ProductCard({
             </svg>
           )}
         </button>
+
+        {/* VHS tracking line on hover */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-[var(--color-neon)] opacity-0 group-hover:opacity-30 transition-opacity duration-300 z-20" />
       </div>
 
       <div className="flex justify-between items-start">
@@ -109,7 +121,8 @@ export default function Products({
   return (
     <section className="py-20 md:py-32 px-5 md:px-10" id="objects" ref={ref}>
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-baseline mb-8 pb-4 border-b-2 border-[var(--color-text)]">
+        {/* Header with retro decorations */}
+        <div className="flex justify-between items-baseline mb-8 pb-4 border-b-2 border-[var(--color-text)] relative">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -127,6 +140,8 @@ export default function Products({
             <span>DROP 001</span>
             <span>VIEW [{products.length}]</span>
           </motion.div>
+          {/* Decorative tape */}
+          <div className="absolute -bottom-1 left-20 w-20 h-3 bg-[var(--color-neon)] opacity-30 rotate-[1deg]" />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">

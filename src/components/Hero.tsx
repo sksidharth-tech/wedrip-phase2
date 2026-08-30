@@ -22,11 +22,11 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center px-5 md:px-10 overflow-hidden paper-bg" id="top">
       {/* Background layers */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#f5f0e8] via-[#ebe5d8] to-[#f5f0e8]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,rgba(37,99,235,0.04)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,rgba(234,179,8,0.04)_0%,transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_80%,rgba(232,85,61,0.03)_0%,transparent_50%)]" />
 
       {/* VHS frame overlay */}
-      <div className="absolute inset-5 border border-[rgba(26,23,20,0.08)] pointer-events-none">
+      <div className="absolute inset-5 border-2 border-[var(--color-text)] pointer-events-none opacity-20">
         <div className="absolute top-4 left-5 font-[var(--font-retro)] text-[10px] text-[var(--color-orange)] tracking-[0.2em] blink">
           ● REC
         </div>
@@ -36,6 +36,23 @@ export default function Hero() {
         <div className="absolute bottom-4 right-5 font-[var(--font-retro)] text-[9px] text-[var(--color-text-muted)] tracking-[0.1em]">
           CHENNAI — 13.0827° N, 80.2707° E
         </div>
+        <div className="absolute bottom-4 left-5 font-[var(--font-retro)] text-[9px] text-[var(--color-text-muted)] tracking-[0.1em]">
+          SP / Hi-Fi STEREO
+        </div>
+      </div>
+
+      {/* Film strip left */}
+      <div className="absolute left-0 top-0 bottom-0 w-8 bg-[var(--color-dark)] opacity-5 hidden lg:flex flex-col items-center justify-center gap-1">
+        {Array.from({ length: 30 }).map((_, i) => (
+          <div key={i} className="w-4 h-3 border border-[var(--color-cream)] opacity-40" />
+        ))}
+      </div>
+
+      {/* Film strip right */}
+      <div className="absolute right-0 top-0 bottom-0 w-8 bg-[var(--color-dark)] opacity-5 hidden lg:flex flex-col items-center justify-center gap-1">
+        {Array.from({ length: 30 }).map((_, i) => (
+          <div key={i} className="w-4 h-3 border border-[var(--color-cream)] opacity-40" />
+        ))}
       </div>
 
       {/* Content */}
@@ -89,25 +106,41 @@ export default function Hero() {
       {/* Cassette tape decoration */}
       <motion.div
         initial={{ opacity: 0, rotate: -10 }}
-        animate={{ opacity: 0.8, rotate: -5 }}
+        animate={{ opacity: 0.9, rotate: -5 }}
         transition={{ duration: 1.2, delay: 1.2 }}
         className="absolute bottom-[10%] right-[8%] hidden lg:block"
       >
-        <div className="w-48 h-28 bg-white border-2 border-[var(--color-text)] rounded-lg p-3 flex flex-col items-center gap-2 shadow-[4px_4px_0_var(--color-text)]">
-          <div className="font-[var(--font-retro)] text-[9px] text-[var(--color-neon)] tracking-[0.2em] px-2 py-0.5 border border-[var(--color-neon)]">
-            DROP 001
+        <div className="w-52 h-32 bg-gradient-to-br from-[#f5f0e8] to-[#ebe5d8] border-2 border-[var(--color-text)] rounded-lg p-3 flex flex-col items-center gap-2 shadow-[4px_4px_0_var(--color-text)] relative">
+          {/* Cassette label */}
+          <div className="w-full h-8 bg-[var(--color-dark)] flex items-center justify-center">
+            <span className="font-[var(--font-retro)] text-[10px] text-[var(--color-neon)] tracking-[0.2em]">
+              WEDRIP RECORDS™
+            </span>
           </div>
-          <div className="flex gap-8">
-            <div className="w-7 h-7 border-2 border-[var(--color-text)] rounded-full relative cassette-reel">
+          {/* Reels */}
+          <div className="flex gap-10 mt-1">
+            <div className="w-8 h-8 border-2 border-[var(--color-text)] rounded-full relative cassette-reel">
               <div className="absolute inset-1.5 border border-[var(--color-text-muted)] rounded-full" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-2 h-2 bg-[var(--color-text)] rounded-full" />
+              </div>
             </div>
-            <div className="w-7 h-7 border-2 border-[var(--color-text)] rounded-full relative cassette-reel" style={{ animationDelay: "-1s" }}>
+            <div className="w-8 h-8 border-2 border-[var(--color-text)] rounded-full relative cassette-reel" style={{ animationDelay: "-1.5s" }}>
               <div className="absolute inset-1.5 border border-[var(--color-text-muted)] rounded-full" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-2 h-2 bg-[var(--color-text)] rounded-full" />
+              </div>
             </div>
           </div>
-          <div className="font-[var(--font-retro)] text-[7px] text-[var(--color-text-muted)] tracking-[0.15em]">
-            SIDE A — THE THIRD SPACE
+          {/* Label */}
+          <div className="font-[var(--font-retro)] text-[8px] text-[var(--color-text-muted)] tracking-[0.15em] mt-1">
+            SIDE A — THE THIRD SPACE — 2026
           </div>
+          {/* Screw holes */}
+          <div className="absolute top-2 left-2 w-2 h-2 rounded-full border border-[var(--color-text)] opacity-30" />
+          <div className="absolute top-2 right-2 w-2 h-2 rounded-full border border-[var(--color-text)] opacity-30" />
+          <div className="absolute bottom-2 left-2 w-2 h-2 rounded-full border border-[var(--color-text)] opacity-30" />
+          <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full border border-[var(--color-text)] opacity-30" />
         </div>
       </motion.div>
 
@@ -119,6 +152,21 @@ export default function Hero() {
         className="absolute bottom-8 left-5 font-[var(--font-handwritten)] text-sm text-[var(--color-text-muted)] hidden md:block"
       >
         ← scroll to explore
+      </motion.div>
+
+      {/* Retro TV channel indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.3 }}
+        transition={{ duration: 1, delay: 1.5 }}
+        className="absolute top-20 right-10 hidden lg:block"
+      >
+        <div className="font-[var(--font-retro)] text-[var(--color-text)] text-4xl font-bold">
+          03
+        </div>
+        <div className="font-[var(--font-retro)] text-[8px] text-[var(--color-text-muted)] tracking-[0.2em]">
+          CH
+        </div>
       </motion.div>
     </section>
   );

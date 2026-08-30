@@ -8,10 +8,14 @@ export default function Drop() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-24 md:py-40 px-5 md:px-10 bg-[var(--color-bg-warm)] overflow-hidden" id="drops" ref={ref}>
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-orange)] to-transparent opacity-40" />
-
-      <div className="absolute inset-0 editorial-stripe opacity-30" />
+    <section className="relative py-24 md:py-40 px-5 md:px-10 bg-[var(--color-bg-warm)] overflow-hidden editorial-stripe" id="drops" ref={ref}>
+      {/* VCR overlay */}
+      <div className="absolute top-4 left-4 font-[var(--font-retro)] text-[9px] text-[var(--color-text-muted)] tracking-[0.2em] opacity-30">
+        CH-03 / LINE IN
+      </div>
+      <div className="absolute top-4 right-4 font-[var(--font-retro)] text-[9px] text-[var(--color-text-muted)] tracking-[0.2em] opacity-30">
+        SP / Hi-Fi
+      </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
@@ -62,17 +66,30 @@ export default function Drop() {
             </motion.a>
           </div>
 
+          {/* Vinyl record with VHS aesthetic */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1.5, delay: 0.3 }}
             className="hidden lg:block"
           >
-            <div className="w-72 h-72 rounded-full bg-[var(--color-text)] flex items-center justify-center vinyl-spin border-4 border-[var(--color-text)] shadow-[8px_8px_0_var(--color-neon)]">
-              <div className="w-24 h-24 rounded-full bg-[var(--color-orange)] flex flex-col items-center justify-center gap-1">
-                <span className="font-[var(--font-mono)] text-[9px] font-bold text-white tracking-[0.1em]">WEDRIP</span>
-                <span className="font-[var(--font-mono)] text-[9px] text-white">●</span>
-                <span className="font-[var(--font-mono)] text-[8px] text-white tracking-[0.1em]">DROP 002</span>
+            <div className="relative">
+              {/* Tape strip */}
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-24 h-6 bg-[var(--color-neon)] opacity-30 rotate-[-2deg] z-10" />
+              
+              <div className="w-72 h-72 rounded-full bg-[var(--color-text)] flex items-center justify-center vinyl-spin border-4 border-[var(--color-text)] shadow-[8px_8px_0_var(--color-neon)] relative">
+                {/* Vinyl grooves */}
+                <div className="absolute inset-4 rounded-full" style={{
+                  background: "repeating-radial-gradient(circle at center,#1a1714 0px,#1a1714 2px,#2a2a2a 2px,#2a2a2a 3px)"
+                }} />
+                {/* Center label */}
+                <div className="w-24 h-24 rounded-full bg-[var(--color-orange)] flex flex-col items-center justify-center gap-1 relative z-10 border-2 border-[var(--color-text)]">
+                  <span className="font-[var(--font-mono)] text-[9px] font-bold text-white tracking-[0.1em]">WEDRIP</span>
+                  <span className="font-[var(--font-mono)] text-[9px] text-white">●</span>
+                  <span className="font-[var(--font-mono)] text-[8px] text-white tracking-[0.1em]">DROP 002</span>
+                </div>
+                {/* Center hole */}
+                <div className="absolute w-3 h-3 rounded-full bg-[var(--color-bg)] z-20" />
               </div>
             </div>
           </motion.div>
