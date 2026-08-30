@@ -120,7 +120,7 @@ export default function Products({
 
   return (
     <section className="py-20 md:py-32 px-5 md:px-10" id="store" ref={ref}>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto pl-[3px]">
         {/* Header - Swiss style */}
         <div className="flex justify-between items-baseline mb-8 pb-4 border-b-[3px] border-[var(--color-text)] relative">
           <motion.h2
