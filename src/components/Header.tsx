@@ -44,7 +44,7 @@ export default function Header({ bagCount }: { bagCount: number }) {
       </button>
 
       {/* Logo - Retro + Pixel */}
-      <a href="#" className="flex items-center gap-1.5 no-underline ml-2 md:ml-4">
+      <a href="#" className="flex items-center gap-1.5 no-underline ml-4 md:ml-6">
         <span className="font-[var(--font-pixel)] text-[16px] md:text-[18px] text-[var(--color-neon)] tracking-wider">WE</span>
         <span className="font-[var(--font-editorial)] text-3xl md:text-4xl font-black text-[var(--color-text)] italic">●</span>
         <span className="font-[var(--font-pixel)] text-[16px] md:text-[18px] text-[var(--color-neon)] tracking-wider">DRIP</span>

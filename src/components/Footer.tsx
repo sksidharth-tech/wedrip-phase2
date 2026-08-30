@@ -18,7 +18,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto ml-4 md:ml-8">
+      <div className="max-w-6xl mx-auto ml-6 md:ml-12">
         {/* Logo - Retro + Pixel */}
         <motion.a
           href="#"

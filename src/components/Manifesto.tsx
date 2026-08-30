@@ -20,7 +20,7 @@ export default function Manifesto() {
         NTSC / 4:3
       </div>
 
-      <div className="max-w-6xl mx-auto ml-4 md:ml-8">
+      <div className="max-w-6xl mx-auto ml-6 md:ml-12">
         {/* Swiss-style eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}

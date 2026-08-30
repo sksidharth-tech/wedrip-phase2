@@ -31,7 +31,7 @@ export default function Drop() {
         ))}
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10 ml-4 md:ml-8">
+      <div className="max-w-6xl mx-auto relative z-10 ml-6 md:ml-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Content - Editorial */}
           <div className="lg:col-span-7">
