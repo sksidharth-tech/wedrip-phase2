@@ -14,66 +14,74 @@ export default function Header({ bagCount }: { bagCount: number }) {
 
   return (
     <header
-      className={`fixed top-8 left-0 right-0 h-14 flex items-center justify-between px-5 md:px-10 z-[999] transition-all duration-300 ${
+      className={`fixed top-8 left-0 right-0 h-14 flex items-center justify-between px-5 md:px-10 z-[999] transition-all duration-200 ${
         scrolled
-          ? "bg-[rgba(245,240,232,0.95)] backdrop-blur-xl border-b border-[rgba(26,23,20,0.08)]"
-          : "bg-[rgba(245,240,232,0.6)] backdrop-blur-sm"
+          ? "bg-[rgba(245,240,232,0.95)] backdrop-blur-xl border-b-2 border-[var(--color-text)]"
+          : "bg-[rgba(245,240,232,0.7)] backdrop-blur-sm"
       }`}
     >
+      {/* Mobile menu toggle - Pixel style */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        className="md:hidden flex flex-col gap-[5px] bg-transparent border-none p-1"
+        className="md:hidden flex flex-col gap-[5px] bg-transparent border-2 border-[var(--color-text)] p-1.5"
         aria-label="Menu"
       >
         <span
-          className={`block w-5 h-[1.5px] bg-[var(--color-text)] transition-all duration-300 ${
-            menuOpen ? "rotate-45 translate-y-[6px]" : ""
+          className={`block w-4 h-[2px] bg-[var(--color-text)] transition-all duration-200 ${
+            menuOpen ? "rotate-45 translate-y-[7px]" : ""
           }`}
         />
         <span
-          className={`block w-5 h-[1.5px] bg-[var(--color-text)] transition-all duration-300 ${
+          className={`block w-4 h-[2px] bg-[var(--color-text)] transition-all duration-200 ${
             menuOpen ? "opacity-0" : ""
           }`}
         />
         <span
-          className={`block w-5 h-[1.5px] bg-[var(--color-text)] transition-all duration-300 ${
-            menuOpen ? "-rotate-45 -translate-y-[6px]" : ""
+          className={`block w-4 h-[2px] bg-[var(--color-text)] transition-all duration-200 ${
+            menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
           }`}
         />
       </button>
 
-      <a href="#" className="font-[var(--font-mono)] text-lg font-bold tracking-wide no-underline text-[var(--color-text)]">
-        WE<span className="text-[var(--color-neon)]">●</span>DRIP
+      {/* Logo - Retro + Pixel */}
+      <a href="#" className="flex items-center gap-1 no-underline">
+        <span className="font-[var(--font-pixel)] text-[10px] text-[var(--color-neon)] tracking-wider">WE</span>
+        <span className="font-[var(--font-editorial)] text-xl font-black text-[var(--color-text)] italic">●</span>
+        <span className="font-[var(--font-pixel)] text-[10px] text-[var(--color-neon)] tracking-wider">DRIP</span>
       </a>
 
+      {/* Desktop nav - Swiss style */}
       <nav className="hidden md:flex gap-8">
         {["OBJECTS", "STORY", "DROPS", "CONTACT"].map((label) => (
           <a
             key={label}
             href={label === "CONTACT" ? "mailto:hello@wedrip.in" : `#${label.toLowerCase()}`}
-            className="font-[var(--font-mono)] text-[11px] font-bold tracking-[0.15em] text-[var(--color-text-muted)] no-underline hover:text-[var(--color-neon)] transition-colors relative group"
+            className="font-[var(--font-mono)] text-[10px] font-bold tracking-[0.2em] text-[var(--color-text-muted)] no-underline hover:text-[var(--color-neon)] transition-colors relative group"
           >
             {label}
-            <span className="absolute -bottom-1 left-0 w-0 h-px bg-[var(--color-neon)] transition-all duration-300 group-hover:w-full" />
+            <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--color-neon)] transition-all duration-200 group-hover:w-full" />
           </a>
         ))}
       </nav>
 
-      <button className="font-[var(--font-mono)] text-[11px] font-bold tracking-[0.1em] text-[var(--color-text-muted)] bg-transparent border border-[rgba(26,23,20,0.2)] px-3 py-1.5 hover:border-[var(--color-neon)] hover:text-[var(--color-neon)] transition-all">
+      {/* Bag button - Retro bevel */}
+      <button className="font-[var(--font-pixel)] text-[8px] tracking-wider text-[var(--color-text)] bg-[var(--color-bg)] border-2 border-[var(--color-text)] px-3 py-1.5 hover:bg-[var(--color-neon)] hover:text-[var(--color-dark)] transition-all duration-150 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none shadow-[2px_2px_0_var(--color-text)]">
         BAG [{bagCount}]
       </button>
 
+      {/* Mobile menu overlay - Handwritten style */}
       <div
-        className={`fixed inset-0 top-8 bg-[rgba(245,240,232,0.97)] flex flex-col items-center justify-center gap-10 transition-opacity duration-400 md:hidden ${
+        className={`fixed inset-0 top-8 bg-[rgba(245,240,232,0.97)] flex flex-col items-center justify-center gap-10 transition-opacity duration-300 md:hidden ${
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        {["OBJECTS", "STORY", "DROPS", "CONTACT"].map((label) => (
+        {["OBJECTS", "STORY", "DROPS", "CONTACT"].map((label, i) => (
           <a
             key={label}
             href={label === "CONTACT" ? "mailto:hello@wedrip.in" : `#${label.toLowerCase()}`}
             onClick={() => setMenuOpen(false)}
-            className="font-[var(--font-mono)] text-sm font-bold tracking-[0.3em] text-[var(--color-text-muted)] no-underline hover:text-[var(--color-neon)] transition-colors"
+            className="font-[var(--font-handwritten)] text-3xl text-[var(--color-text)] no-underline hover:text-[var(--color-neon)] transition-colors"
+            style={{ transform: `rotate(${-2 + i}deg)` }}
           >
             {label}
           </a>

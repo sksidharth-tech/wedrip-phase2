@@ -1,21 +1,29 @@
 @import "tailwindcss";
 
 @theme inline {
+  /* ─── BASE PALETTE ─── */
   --color-bg: #f5f0e8;
   --color-bg-warm: #ebe5d8;
   --color-bg-card: #fffdf8;
   --color-text: #1a1714;
   --color-text-muted: #6b6358;
-  --color-neon: #eab308;
-  --color-orange: #e8553d;
-  --color-electric: #7c3aed;
-  --color-lime: #65a30d;
   --color-cream: #f5f0e8;
   --color-dark: #1a1714;
 
+  /* ─── ACCENT COLORS (6 styles) ─── */
+  --color-neon: #eab308;          /* Retro/Arcade yellow */
+  --color-orange: #e8553d;        /* Retro VHS orange */
+  --color-electric: #7c3aed;      /* Futuristic purple */
+  --color-cyan: #38bdf8;          /* Futuristic cyan */
+  --color-swiss-red: #d92727;     /* Swiss red */
+  --color-lime: #65a30d;          /* Success green */
+  --color-pink: #ff007f;          /* Arcade neon pink */
+
+  /* ─── FONTS ─── */
+  --font-editorial: 'Playfair Display', Georgia, serif;
   --font-futuristic: 'Space Grotesk', sans-serif;
   --font-retro: 'VT323', monospace;
-  --font-editorial: 'Playfair Display', serif;
+  --font-pixel: 'Press Start 2P', 'VT323', monospace;
   --font-handwritten: 'Caveat', cursive;
   --font-mono: 'Space Mono', monospace;
 }
@@ -41,15 +49,14 @@ body {
   font-family: var(--font-futuristic);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  position: relative;
 }
 
-/* ─── SCROLLBAR ─── */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--color-bg-warm); border-left: 1px solid rgba(26,23,20,0.1); }
-::-webkit-scrollbar-thumb { background: var(--color-text); border: 1px solid var(--color-bg); }
-::-webkit-scrollbar-thumb:hover { background: var(--color-neon); }
+/* ═══════════════════════════════════════════════
+   GLOBAL OVERLAYS (Retro + Futuristic)
+   ═══════════════════════════════════════════════ */
 
-/* ─── GRAIN OVERLAY ─── */
+/* Film grain */
 .grain-overlay {
   position: fixed;
   inset: 0;
@@ -60,7 +67,7 @@ body {
   background-size: 128px 128px;
 }
 
-/* ─── SCANLINES ─── */
+/* CRT scanlines */
 .scanlines {
   position: fixed;
   inset: 0;
@@ -70,12 +77,12 @@ body {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.01) 2px,
-    rgba(0, 0, 0, 0.01) 4px
+    rgba(0, 0, 0, 0.012) 2px,
+    rgba(0, 0, 0, 0.012) 4px
   );
 }
 
-/* ─── VHS TRACKING ─── */
+/* VHS tracking line */
 @keyframes vhsTracking {
   0% { transform: translateY(-100vh); }
   100% { transform: translateY(100vh); }
@@ -86,104 +93,95 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(26,23,20,0.08), transparent);
+  background: linear-gradient(90deg, transparent, rgba(26,23,20,0.06), transparent);
   z-index: 9002;
   pointer-events: none;
   animation: vhsTracking 6s linear infinite;
 }
 
-/* ─── TICKER ─── */
+/* ═══════════════════════════════════════════════
+   SCROLLBAR (Retro styled)
+   ═══════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { 
+  background: var(--color-bg-warm); 
+  border-left: 2px solid var(--color-text);
+}
+::-webkit-scrollbar-thumb { 
+  background: var(--color-text); 
+  border: 2px solid var(--color-bg);
+}
+::-webkit-scrollbar-thumb:hover { 
+  background: var(--color-neon); 
+}
+
+/* ═══════════════════════════════════════════════
+   TICKER (Retro)
+   ═══════════════════════════════════════════════ */
 @keyframes tickerScroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
 .ticker-content {
-  animation: tickerScroll 25s linear infinite;
+  animation: tickerScroll 20s linear infinite;
 }
 
-/* ─── CASSETTE REEL ─── */
-@keyframes reelSpin {
-  to { transform: rotate(360deg); }
-}
+/* ═══════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════ */
 
-.cassette-reel {
-  animation: reelSpin 3s linear infinite;
-}
-
-/* ─── VINYL SPIN ─── */
-@keyframes vinylSpin {
-  to { transform: rotate(360deg); }
-}
-
-.vinyl-spin {
-  animation: vinylSpin 8s linear infinite;
-}
-
-/* ─── BLINK ─── */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
 
-.blink {
-  animation: blink 1.5s ease-in-out infinite;
-}
+.blink { animation: blink 1.5s ease-in-out infinite; }
 
-/* ─── MARQUEE ─── */
 @keyframes marqueeLeft {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-.marquee-left {
-  animation: marqueeLeft 30s linear infinite;
+.marquee-left { animation: marqueeLeft 25s linear infinite; }
+
+@keyframes reelSpin {
+  to { transform: rotate(360deg); }
 }
 
-@keyframes marqueeRight {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
+.cassette-reel { animation: reelSpin 3s linear infinite; }
+
+@keyframes vinylSpin {
+  to { transform: rotate(360deg); }
 }
 
-.marquee-right {
-  animation: marqueeRight 35s linear infinite;
-}
+.vinyl-spin { animation: vinylSpin 8s linear infinite; }
 
-/* ─── FLOAT ─── */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.float {
-  animation: float 4s ease-in-out infinite;
-}
-
-/* ─── STAMP ROTATE ─── */
 @keyframes stampRotate {
   0% { transform: rotate(-15deg) scale(1); }
   50% { transform: rotate(-12deg) scale(1.02); }
   100% { transform: rotate(-15deg) scale(1); }
 }
 
-.stamp-animate {
-  animation: stampRotate 6s ease-in-out infinite;
-}
+.stamp-animate { animation: stampRotate 6s ease-in-out infinite; }
 
-/* ─── TV STATIC ─── */
 @keyframes tvStatic {
   0% { background-position: 0 0; }
   100% { background-position: 100% 100%; }
 }
 
-.tv-static {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 150px 150px;
-  animation: tvStatic 0.5s steps(10) infinite;
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.8; }
+  94% { opacity: 1; }
+  96% { opacity: 0.9; }
+  97% { opacity: 1; }
 }
 
-/* ─── VHS GLITCH ─── */
-@keyframes vhsGlitch {
+.flicker { animation: flicker 4s ease-in-out infinite; }
+
+@keyframes glitch {
   0%, 100% { transform: translate(0); }
   10% { transform: translate(-2px, 1px); }
   20% { transform: translate(2px, -1px); }
@@ -191,67 +189,180 @@ body {
   40% { transform: translate(1px, -2px); }
   50% { transform: translate(-2px, 0); }
   60% { transform: translate(2px, 1px); }
-  70% { transform: translate(0, -1px); }
-  80% { transform: translate(-1px, 0); }
-  90% { transform: translate(1px, 2px); }
 }
 
-.vhs-glitch:hover {
-  animation: vhsGlitch 0.3s ease-in-out;
+/* ═══════════════════════════════════════════════
+   RETRO EFFECTS
+   ═══════════════════════════════════════════════ */
+
+/* VHS static noise */
+.tv-static {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  animation: tvStatic 0.5s steps(10) infinite;
 }
 
-/* ─── NOISE TEXTURE ON HOVER ─── */
-.noise-hover {
-  position: relative;
-}
-.noise-hover::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
-  transition: opacity 0.3s;
-  pointer-events: none;
-  mix-blend-mode: multiply;
-}
-.noise-hover:hover::after {
-  opacity: 1;
+/* Windows 95 bevel */
+.win95-border {
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+  box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #000;
 }
 
-/* ─── EDITORIAL STRIPE ─── */
+.win95-border-inset {
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  box-shadow: inset 1px 1px 0 #000, inset -1px -1px 0 #dfdfdf;
+}
+
+/* ═══════════════════════════════════════════════
+   PIXEL ART EFFECTS
+   ═══════════════════════════════════════════════ */
+
+.pixel-border {
+  border: 3px solid var(--color-text);
+  image-rendering: pixelated;
+}
+
+.pixel-border-thick {
+  border: 4px solid var(--color-text);
+  image-rendering: pixelated;
+}
+
+.pixel-shadow {
+  box-shadow: 3px 3px 0 var(--color-text);
+}
+
+/* ═══════════════════════════════════════════════
+   SWISS DESIGN EFFECTS
+   ═══════════════════════════════════════════════ */
+
+.swiss-divider {
+  border: none;
+  border-top: 1px solid var(--color-text);
+  opacity: 0.2;
+}
+
+.swiss-divider-thick {
+  border: none;
+  border-top: 3px solid var(--color-text);
+}
+
+/* ═══════════════════════════════════════════════
+   EDITORIAL EFFECTS
+   ═══════════════════════════════════════════════ */
+
+.editorial-dropcap::first-letter {
+  font-family: var(--font-editorial);
+  font-size: 4em;
+  font-weight: 900;
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.1em;
+  color: var(--color-text);
+}
+
 .editorial-stripe {
   background: repeating-linear-gradient(
     -45deg,
     transparent,
     transparent 4px,
-    rgba(234, 179, 8, 0.02) 4px,
-    rgba(234, 179, 8, 0.02) 8px
+    rgba(234, 179, 8, 0.015) 4px,
+    rgba(234, 179, 8, 0.015) 8px
   );
 }
 
-/* ─── HANDWRITTEN UNDERLINE ─── */
-.handwritten-underline {
-  position: relative;
-  display: inline-block;
-}
-.handwritten-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: -5%;
-  width: 110%;
-  height: 3px;
-  background: var(--color-orange);
-  border-radius: 2px;
+/* ═══════════════════════════════════════════════
+   HANDWRITTEN EFFECTS
+   ═══════════════════════════════════════════════ */
+
+.handwritten-card {
+  background: #fff9e6;
+  border: 2px solid var(--color-text);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  padding: 1.5rem;
   transform: rotate(-0.5deg);
 }
 
-/* ─── GLOW TEXT ─── */
-.glow-text {
-  text-shadow: 0 0 20px rgba(234, 179, 8, 0.3), 0 0 40px rgba(234, 179, 8, 0.15);
+.handwritten-tape {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 80px;
+  height: 20px;
+  background: rgba(226, 180, 189, 0.7);
 }
 
-/* ─── RETRO BORDER ─── */
+.tape-strip {
+  position: absolute;
+  height: 16px;
+  background: var(--color-neon);
+  opacity: 0.35;
+  transform: rotate(-2deg);
+}
+
+/* ═══════════════════════════════════════════════
+   FUTURISTIC EFFECTS
+   ═══════════════════════════════════════════════ */
+
+.futuristic-panel {
+  background: rgba(26, 23, 20, 0.03);
+  border: 1px solid rgba(26, 23, 20, 0.1);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 16px) 0,
+    100% 16px,
+    100% 100%,
+    16px 100%,
+    0 calc(100% - 16px)
+  );
+  position: relative;
+}
+
+.futuristic-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-neon), transparent);
+  opacity: 0.5;
+}
+
+.futuristic-glow {
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.15);
+}
+
+.futuristic-scanline {
+  position: relative;
+  overflow: hidden;
+}
+
+.futuristic-scanline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(234, 179, 8, 0.02) 2px,
+    rgba(234, 179, 8, 0.02) 4px
+  );
+  pointer-events: none;
+}
+
+/* Neon text glow */
+.neon-glow {
+  text-shadow: 0 0 10px rgba(234, 179, 8, 0.3), 0 0 20px rgba(234, 179, 8, 0.15);
+}
+
+/* ═══════════════════════════════════════════════
+   COMBINED RETRO BORDERS
+   ═══════════════════════════════════════════════ */
+
 .retro-border {
   border: 2px solid var(--color-text);
   box-shadow: 4px 4px 0 var(--color-text);
@@ -267,152 +378,47 @@ body {
   box-shadow: 4px 4px 0 var(--color-orange);
 }
 
-/* ─── PAPER TEXTURE ─── */
-.paper-bg {
-  background-image: 
-    radial-gradient(ellipse at 20% 50%, rgba(234, 179, 8, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(232, 85, 61, 0.02) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(124, 58, 237, 0.02) 0%, transparent 50%);
+/* ═══════════════════════════════════════════════
+   FILM STRIP
+   ═══════════════════════════════════════════════ */
+
+.film-strip {
+  display: flex;
+  gap: 1px;
 }
 
-/* ─── CRT SCREEN EFFECT ─── */
-.crt-screen {
-  position: relative;
-  overflow: hidden;
-}
-.crt-screen::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 1px,
-    rgba(0, 0, 0, 0.03) 1px,
-    rgba(0, 0, 0, 0.03) 2px
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-.crt-screen::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 0%,
-    rgba(0, 0, 0, 0.05) 100%
-  );
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* ─── RETRO GRID OVERLAY ─── */
-.retro-grid {
-  background-image: 
-    linear-gradient(rgba(26, 23, 20, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(26, 23, 20, 0.03) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-/* ─── VHS BORDER EFFECT ─── */
-.vhs-border {
-  border: 3px solid var(--color-text);
-  box-shadow: 
-    inset 0 0 0 1px var(--color-bg),
-    inset 0 0 0 2px var(--color-text),
-    4px 4px 0 var(--color-text);
-}
-
-/* ─── PIXEL ART BORDER ─── */
-.pixel-border-thick {
-  border: 4px solid var(--color-text);
-  image-rendering: pixelated;
-}
-
-/* ─── HANDWRITTEN BRACKET ─── */
-.handwritten-bracket {
-  position: relative;
-}
-.handwritten-bracket::before {
-  content: '{';
-  position: absolute;
-  left: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--font-handwritten);
-  font-size: 2rem;
-  color: var(--color-orange);
-  opacity: 0.5;
-}
-.handwritten-bracket::after {
-  content: '}';
-  position: absolute;
-  right: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--font-handwritten);
-  font-size: 2rem;
-  color: var(--color-orange);
-  opacity: 0.5;
-}
-
-/* ─── EDITORIAL NUMBER ─── */
-.editorial-number {
-  font-family: var(--font-editorial);
-  font-size: 8rem;
-  font-weight: 900;
-  line-height: 1;
-  opacity: 0.05;
-  position: absolute;
-  pointer-events: none;
-}
-
-/* ─── SWISS GRID LINE ─── */
-.swiss-line {
-  width: 1px;
-  background: var(--color-text);
-  opacity: 0.15;
-}
-
-/* ─── RETRO BADGE ─── */
-.retro-badge {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 4px 8px;
-  border: 1px solid currentColor;
-  display: inline-block;
-}
-
-/* ─── CASSETTE HOLE ─── */
-.cassette-hole {
-  width: 8px;
+.film-strip-hole {
+  width: 12px;
   height: 8px;
-  border: 1px solid var(--color-text);
-  border-radius: 50%;
+  border: 1px solid currentColor;
   opacity: 0.3;
 }
 
-/* ─── FILM FRAME ─── */
-.film-frame {
+/* ═══════════════════════════════════════════════
+   CASSETTE
+   ═══════════════════════════════════════════════ */
+
+.cassette-body {
+  background: linear-gradient(145deg, var(--color-bg), var(--color-bg-warm));
   border: 2px solid var(--color-text);
+  box-shadow: 4px 4px 0 var(--color-text);
   position: relative;
 }
-.film-frame::before {
-  content: '';
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  right: 4px;
-  bottom: 4px;
-  border: 1px solid var(--color-text);
-  opacity: 0.3;
+
+/* ═══════════════════════════════════════════════
+   VINYL
+   ═══════════════════════════════════════════════ */
+
+.vinyl-grooves {
+  background: repeating-radial-gradient(
+    circle at center,
+    var(--color-dark) 0px,
+    var(--color-dark) 2px,
+    #2a2a2a 2px,
+    #2a2a2a 3px
+  );
 }
 
-/* ─── VINYL LABEL ─── */
 .vinyl-label {
   background: var(--color-orange);
   border-radius: 50%;
@@ -424,207 +430,37 @@ body {
   border: 2px solid var(--color-text);
 }
 
-/* ─── TAPE STRIP ─── */
-.tape-strip {
-  position: absolute;
-  height: 16px;
-  background: var(--color-neon);
-  opacity: 0.3;
-  transform: rotate(-2deg);
-}
+/* ═══════════════════════════════════════════════
+   NOISE HOVER
+   ═══════════════════════════════════════════════ */
 
-/* ─── WORN EDGE EFFECT ─── */
-.worn-edge-top {
+.noise-hover {
   position: relative;
 }
-.worn-edge-top::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
-    var(--color-bg) 0%,
-    transparent 5%,
-    var(--color-bg) 10%,
-    transparent 15%,
-    var(--color-bg) 20%,
-    transparent 25%,
-    var(--color-bg) 30%,
-    transparent 35%,
-    var(--color-bg) 40%,
-    transparent 45%,
-    var(--color-bg) 50%,
-    transparent 55%,
-    var(--color-bg) 60%,
-    transparent 65%,
-    var(--color-bg) 70%,
-    transparent 75%,
-    var(--color-bg) 80%,
-    transparent 85%,
-    var(--color-bg) 90%,
-    transparent 95%,
-    var(--color-bg) 100%
-  );
-  z-index: 10;
-}
 
-/* ─── VHS OVERLAY ─── */
-.vhs-overlay {
-  position: relative;
-}
-.vhs-overlay::before {
+.noise-hover::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(255, 255, 255, 0.02) 2px,
-    rgba(255, 255, 255, 0.02) 4px
-  );
+  opacity: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+  transition: opacity 0.3s;
   pointer-events: none;
-  z-index: 1;
+  mix-blend-mode: multiply;
 }
 
-/* ─── FILM STRIP BORDER ─── */
-.film-strip-border {
-  position: relative;
-}
-.film-strip-border::before,
-.film-strip-border::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 8px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--color-text) 0px,
-    var(--color-text) 6px,
-    transparent 6px,
-    transparent 12px
-  );
-  opacity: 0.15;
-}
-.film-strip-border::before { top: 0; }
-.film-strip-border::after { bottom: 0; }
-
-/* ─── RETRO TV FRAME ─── */
-.retro-tv {
-  border: 4px solid var(--color-text);
-  box-shadow: 8px 8px 0 var(--color-text), inset 0 0 30px rgba(26,23,20,0.1);
-  background: var(--color-dark);
-  position: relative;
+.noise-hover:hover::after {
+  opacity: 1;
 }
 
-.retro-tv::before {
-  content: '';
-  position: absolute;
-  inset: 4px;
-  border: 1px solid rgba(255,255,255,0.05);
-  pointer-events: none;
+/* ═══════════════════════════════════════════════
+   RESPONSIVE UTILITIES
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
 }
 
-/* ─── CASSETTE BODY ─── */
-.cassette-body {
-  background: linear-gradient(145deg, #f5f0e8, #ebe5d8);
-  border: 2px solid var(--color-text);
-  box-shadow: 4px 4px 0 var(--color-text);
-  position: relative;
-}
-
-.cassette-body::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  right: 8px;
-  bottom: 50%;
-  border: 1px dashed rgba(26,23,20,0.2);
-}
-
-/* ─── VINYL GROOVES ─── */
-.vinyl-grooves {
-  background: repeating-radial-gradient(
-    circle at center,
-    var(--color-dark) 0px,
-    var(--color-dark) 2px,
-    #2a2a2a 2px,
-    #2a2a2a 3px
-  );
-}
-
-/* ─── CHROMATIC ABERRATION ─── */
-.chromatic {
-  position: relative;
-}
-.chromatic::before {
-  content: attr(data-text);
-  position: absolute;
-  left: 2px;
-  top: 0;
-  color: var(--color-orange);
-  opacity: 0.5;
-  z-index: -1;
-}
-.chromatic::after {
-  content: attr(data-text);
-  position: absolute;
-  left: -2px;
-  top: 0;
-  color: var(--color-neon);
-  opacity: 0.5;
-  z-index: -1;
-}
-
-/* ─── RETRO PIXEL BORDER ─── */
-.pixel-border {
-  border-image: repeating-linear-gradient(
-    90deg,
-    var(--color-text) 0px,
-    var(--color-text) 4px,
-    transparent 4px,
-    transparent 8px
-  ) 4;
-}
-
-/* ─── WORN PAPER EDGE ─── */
-.worn-edge {
-  position: relative;
-}
-.worn-edge::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
-    var(--color-bg) 0%,
-    transparent 5%,
-    var(--color-bg) 10%,
-    transparent 15%,
-    var(--color-bg) 20%,
-    transparent 25%,
-    var(--color-bg) 30%,
-    transparent 35%,
-    var(--color-bg) 40%,
-    transparent 45%,
-    var(--color-bg) 50%,
-    transparent 55%,
-    var(--color-bg) 60%,
-    transparent 65%,
-    var(--color-bg) 70%,
-    transparent 75%,
-    var(--color-bg) 80%,
-    transparent 85%,
-    var(--color-bg) 90%,
-    transparent 95%,
-    var(--color-bg) 100%
-  );
+@media (min-width: 769px) {
+  .hide-desktop { display: none !important; }
 }
