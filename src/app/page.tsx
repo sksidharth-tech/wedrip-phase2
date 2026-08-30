@@ -80,8 +80,8 @@ export default function Home() {
         </div>
 
         {/* Quote section - Swiss grid + Handwritten */}
-        <div className="py-12 md:py-20 pl-7 pr-5">
-          <div className="max-w-5xl mx-auto">
+        <div className="py-12 md:py-20 px-5">
+          <div className="max-w-5xl mx-auto ml-4 md:ml-8">
             <div className="grid grid-cols-12 gap-4">
               {/* Left decorative column - Swiss */}
               <div className="col-span-1 hidden md:flex flex-col items-center gap-2 pt-4">
@@ -173,7 +173,7 @@ export default function Home() {
         </div>
 
         {/* VHS Player section - Futuristic + Retro */}
-        <div className="py-16 md:py-24 pl-7 pr-5 md:pl-20 md:pr-10 bg-[var(--color-bg-warm)] editorial-stripe relative">
+        <div className="py-16 md:py-24 px-5 md:px-10 bg-[var(--color-bg-warm)] editorial-stripe relative">
           <div className="absolute top-4 left-4 font-[var(--font-retro)] text-[9px] text-[var(--color-text-muted)] tracking-[0.2em] opacity-40">
             CH-03 / LINE IN / AUTO
           </div>
@@ -193,7 +193,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="max-w-5xl mx-auto text-center relative z-10">
+          <div className="max-w-5xl mx-auto text-center relative z-10 ml-4 md:ml-8">
             <p className="font-[var(--font-retro)] text-lg md:text-2xl text-[var(--color-electric)] tracking-[0.2em] mb-6">
               ▶ PLAY ▶ PAUSE ▶ REWIND
             </p>

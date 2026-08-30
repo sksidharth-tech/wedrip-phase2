@@ -44,10 +44,10 @@ export default function Header({ bagCount }: { bagCount: number }) {
       </button>
 
       {/* Logo - Retro + Pixel */}
-      <a href="#" className="flex items-center gap-1.5 no-underline">
-        <span className="font-[var(--font-pixel)] text-[14px] text-[var(--color-neon)] tracking-wider">WE</span>
-        <span className="font-[var(--font-editorial)] text-2xl font-black text-[var(--color-text)] italic">●</span>
-        <span className="font-[var(--font-pixel)] text-[14px] text-[var(--color-neon)] tracking-wider">DRIP</span>
+      <a href="#" className="flex items-center gap-1.5 no-underline ml-2 md:ml-4">
+        <span className="font-[var(--font-pixel)] text-[16px] md:text-[18px] text-[var(--color-neon)] tracking-wider">WE</span>
+        <span className="font-[var(--font-editorial)] text-3xl md:text-4xl font-black text-[var(--color-text)] italic">●</span>
+        <span className="font-[var(--font-pixel)] text-[16px] md:text-[18px] text-[var(--color-neon)] tracking-wider">DRIP</span>
       </a>
 
       {/* Desktop nav - Swiss style */}

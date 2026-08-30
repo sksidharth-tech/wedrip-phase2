@@ -8,7 +8,7 @@ export default function Manifesto() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-24 md:py-40 pl-7 pr-5 md:pl-20 md:pr-10 bg-[var(--color-bg-warm)]" id="story" ref={ref}>
+    <section className="relative py-24 md:py-40 px-5 md:px-10 bg-[var(--color-bg-warm)]" id="story" ref={ref}>
       {/* Swiss divider top */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-[var(--color-text)]" />
 
@@ -20,7 +20,7 @@ export default function Manifesto() {
         NTSC / 4:3
       </div>
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto ml-4 md:ml-8">
         {/* Swiss-style eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
