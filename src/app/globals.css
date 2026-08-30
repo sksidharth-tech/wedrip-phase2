@@ -6,7 +6,7 @@
   --color-bg-card: #fffdf8;
   --color-text: #1a1714;
   --color-text-muted: #6b6358;
-  --color-neon: #2563eb;
+  --color-neon: #eab308;
   --color-orange: #e8553d;
   --color-electric: #7c3aed;
   --color-lime: #65a30d;
@@ -108,19 +108,11 @@ body {
   pointer-events: none;
   z-index: 99999;
   transform: translate(-50%, -50%);
-  transition: transform 0.12s ease-out, opacity 0.2s;
-}
-
-.custom-cursor.hovering {
-  transform: translate(-50%, -50%) scale(1.6);
+  transition: opacity 0.2s, width 0.15s, height 0.15s;
 }
 
 .cursor-dot {
   position: fixed;
-  width: 6px;
-  height: 6px;
-  background: var(--color-orange);
-  border-radius: 50%;
   pointer-events: none;
   z-index: 99998;
   transform: translate(-50%, -50%);
