@@ -8,7 +8,7 @@ export default function Drop() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-24 md:py-40 px-5 md:px-10 bg-[var(--color-bg-warm)] overflow-hidden editorial-stripe" id="drops" ref={ref}>
+    <section className="relative py-24 md:py-40 pl-[4px] pr-5 md:pl-[4px] md:pr-10 bg-[var(--color-bg-warm)] overflow-hidden editorial-stripe" id="drops" ref={ref}>
       {/* VCR overlay */}
       <div className="absolute top-4 left-4 font-[var(--font-retro)] text-[9px] text-[var(--color-text-muted)] tracking-[0.2em] opacity-30">
         CH-03 / LINE IN

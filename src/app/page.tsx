@@ -173,7 +173,7 @@ export default function Home() {
         </div>
 
         {/* VHS Player section - Futuristic + Retro */}
-        <div className="py-16 md:py-24 px-5 md:px-10 bg-[var(--color-bg-warm)] editorial-stripe relative">
+        <div className="py-16 md:py-24 pl-0 pr-5 md:pl-0 md:pr-10 bg-[var(--color-bg-warm)] editorial-stripe relative">
           <div className="absolute top-4 left-4 font-[var(--font-retro)] text-[9px] text-[var(--color-text-muted)] tracking-[0.2em] opacity-40">
             CH-03 / LINE IN / AUTO
           </div>
