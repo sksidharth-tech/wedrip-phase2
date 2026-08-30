@@ -69,14 +69,16 @@ export default function Drop() {
 
             {/* CTA - Retro bevel */}
             <motion.a
-              href="mailto:hello@wedrip.in"
+              href="https://www.wedrip.in/"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="inline-flex items-center gap-3 font-[var(--font-pixel)] text-[9px] tracking-[0.15em] text-[var(--color-dark)] bg-[var(--color-orange)] px-8 py-4 no-underline border-2 border-[var(--color-dark)] shadow-[4px_4px_0_var(--color-dark)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_var(--color-dark)] hover:bg-[var(--color-neon)] transition-all duration-150"
+              className="inline-flex items-center gap-4 font-[var(--font-pixel)] text-[11px] tracking-[0.15em] text-[var(--color-dark)] bg-[var(--color-orange)] px-12 py-6 no-underline border-2 border-[var(--color-dark)] shadow-[5px_5px_0_var(--color-dark)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[3px_3px_0_var(--color-dark)] hover:bg-[var(--color-neon)] transition-all duration-150"
             >
               BUILD WITH WEDRIP
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M7 17L17 7" />
                 <path d="M7 7h10v10" />
               </svg>
